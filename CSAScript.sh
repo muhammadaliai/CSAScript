@@ -15,25 +15,25 @@ get_system_information() {
 
 # Function to display menu with system information
 display_menu() {
-    # Retrieve system information
+    # Retrieve system 
+    clear 
+    
     get_system_information
 
-    # Clear the screen and display menu options
     # It would be better if its called CSAScript
-    clear
-    echo -e "\e[1m\e[96m"  # Bold cyan color
-    echo
-    echo "     _________                    __________               _____        ___       __         _________             __        __  "
-    echo "    / ________\ __ _______  ____ /    _____/__.__. _____  /  _  \    __| _/_____ |__| ____  /   _____/ ___________|__|______/  |_ "
-    echo "   /    \     /  _ \_  __ \/ __ \ \_____  <   |  |/  ___//  /_\  \  / __ |/     \|  |/    \ \_____  \_/ ___\_  __ \  \____ \   __\\"
-    echo "   \     \___(  <_> )  | \|  ___/ /        \___  |\___ \/    |    \/ /_/ |  Y Y  \  |   |  \/        \  \___|  | \/  |  |_> >  |       By InfoSecMastermind "
-    echo "    \______  /\____/|__|   \___  >_______  / ____/____  >____|__  /\____ |__|_|  /__|___|  /_______  /\___  >__|  |__|   __/|__|  "
-    echo "           \/                  \/        \/\/         \/        \/      \/     \/        \/        \/     \/         |__|         "
+    
+    echo -e "\e[1m\e[32m"  # greenish color
+    
+    echo " _________   _________   _____    _________            .__        __   "
+    echo " \_   ___ \ /   _____/  /  _  \  /   _____/ ___________|__|______/  |__"
+    echo " /    \  \/ \_____  \  /  /_\  \ \_____  \_/ ___\_  __ \  \____ \   __/"
+    echo ' \     \____/        \/    |    \/        \  \___|  | \/  |  |_> >  |     By InfoSecMastermind '
+    echo '  \______  /_______  /\____|__  /_______  /\___  >__|  |__|   __/|__|  '
+    echo "         \/        \/         \/        \/     \/         |__|         "
 
-
     echo
-    echo -e "\e[2m\e[33mLinux Management Tool: User Management, System Monitoring, and more\e[0m"  # Dim yellow color
-    echo "----------------------------------------------------------------------------------"
+    echo -e "\e[2m\e[33mCore System Administration Script: User Management, Backups, System Monitoring, and more\e[0m"  # Dim yellow color
+    echo "-----------------------------------------------------------------------------------------"
     echo
     echo -e " \e[1;33m1.\e[0m User Management"
     echo -e " \e[1;33m2.\e[0m System Monitoring"
@@ -78,7 +78,6 @@ user_management() {
     read -p "Press Enter to continue"
 }
 
-
 # Function for system monitoring
 system_monitoring() {
     echo "System Monitoring"
@@ -109,12 +108,14 @@ system_monitoring() {
     read -p "Press Enter to continue"
 }
 
+
+
 # Function for log analysis
 log_analysis() {
     echo "Log Analysis"
     echo "------------"
     echo "1. View System Logs"
-    echo "2. View Kernel Messages (dmesg)"
+    echo "2. View Kernel Messages"
     echo "3. Search Log Entries"
     read -p "Enter your choice: " choice
     case $choice in
@@ -122,7 +123,7 @@ log_analysis() {
            # Add command to view system logs
            cat /var/log/syslog
            ;;
-        2) echo "Viewing kernel messages (dmesg)..."
+        2) echo "Viewing kernel messages..."
            # Add command to view kernel messages
            dmesg
            ;;
@@ -135,7 +136,6 @@ log_analysis() {
     esac
     read -p "Press Enter to continue"
 }
-
 
 # Function for backup and recovery
 backup_recovery() {
@@ -165,6 +165,7 @@ backup_recovery() {
     esac
     read -p "Press Enter to continue"
 }
+
 
 
 # Main script
