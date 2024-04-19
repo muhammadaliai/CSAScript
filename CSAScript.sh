@@ -3,15 +3,21 @@
 # Function to retrieve system information
 get_system_information() {
     # Command to retrieve system information
-    # You can replace this with any command or script that retrieves system information
     echo "System Information:"
     echo "Hostname: $(hostname)"
     echo "Kernel: $(uname -r)"
     echo "CPU: $(lscpu | grep "Model name" | cut -d':' -f2 | sed 's/^[ \t]*//')"
-    echo "Memory: $(grep MemTotal /proc/meminfo | awk '{print $2}') kB"
-    echo "Disk Usage: $(df -h | awk '$NF == "/" { print $3 }')"
+    echo "Memory Total: $(grep MemTotal /proc/meminfo | awk '{print $2/1024}') MB"
+    echo "Memory Free: $(grep MemFree /proc/meminfo | awk '{print $2/1024}') MB"
+    echo "Disk Total: $(df -h / | awk 'NR==2 {print $2}')" # For the primary disk only
+    echo "Disk Free: $(df -h / | awk 'NR==2 {print $4}')"  # For the primary disk only
     echo "Uptime: $(uptime -p)"
+    if [ -f /etc/os-release ]; then
+        VERSION_NAME=$(grep -E '^VERSION=' /etc/os-release | awk -F '"' '{print $2}')
+        echo "Version Name: $VERSION_NAME"
+    fi
 }
+
 
 # Function to display menu with system information
 display_menu() {
