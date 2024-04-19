@@ -49,8 +49,10 @@ user_management() {
     echo "---------------"
     echo "1. View User Accounts"
     echo "2. Add New User"
-    echo "3. Modify User Account"
-    echo "4. Delete User Account"
+    echo "3. Make Current User a Sudoer"
+    echo "4. Make User a Sudoer"
+    echo "5. Remove User from Sudoers"
+    echo "6. Delete User Account"
     read -p "Enter your choice: " choice
     case $choice in
         1) echo "Viewing user accounts..."
@@ -61,14 +63,30 @@ user_management() {
            echo
            read -p "Enter the username of the new user: " new_username
            sudo adduser $new_username
+           read -p "Do you want to make $new_username a sudoer? (y/n): " sudo_choice
+           if [[ $sudo_choice == "y" || $sudo_choice == "Y" ]]; then
+               sudo usermod -aG sudo $new_username
+               sudo sh -c "echo '$new_username ALL=(ALL) ALL' >> /etc/sudoers"
+           fi
            ;;
-        3) echo "Modifying user account..."
+        3) echo "Making current user sudoer..."
            echo
-           read -p "Enter the username of the user to modify: " modify_username
-           read -p "Enter the new group for the user: " new_group
-           sudo usermod -aG $new_group $modify_username
+           sudo sh -c "echo '$USER ALL=(ALL) ALL' >> /etc/sudoers"
+           echo "User $USER is now a sudoer."
            ;;
-        4) echo "Deleting user account..."
+        4) echo "Making user sudoer..."
+           echo
+           read -p "Enter the username of the user to make sudoer: " sudoer_username
+           sudo usermod -aG sudo $sudoer_username
+           sudo sh -c "echo '$sudoer_username ALL=(ALL) ALL' >> /etc/sudoers"
+           ;;
+        5) echo "Removing user from sudoers..."
+           echo
+           read -p "Enter the username of the user to remove from sudoers: " remove_sudoer_username
+           sudo sed -i "/$remove_sudoer_username/d" /etc/sudoers
+           echo "User $remove_sudoer_username removed from sudoers."
+           ;;
+        6) echo "Deleting user account..."
            echo
            read -p "Enter the username of the user to delete: " delete_username
            sudo deluser $delete_username
@@ -77,6 +95,7 @@ user_management() {
     esac
     read -p "Press Enter to continue"
 }
+
 
 # Function for system monitoring
 system_monitoring() {
