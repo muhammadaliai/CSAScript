@@ -20,8 +20,6 @@ This is a script for performing various system administration tasks such as user
 
 ## Usage
 
-1. Clone the repository to your local machine:
-
    ```bash
    git clone https://github.com/InfoSecMastermind/CSAScript.git
    cd CSAScript
