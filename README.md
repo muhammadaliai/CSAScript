@@ -25,6 +25,7 @@ This is a script for performing various system administration tasks such as user
    cd CSAScript
    chmod +x CSAScript.sh
    sudo ./CSAScript.sh
+   ```
 
 ## Contributing
 
