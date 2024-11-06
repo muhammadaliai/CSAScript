@@ -2,7 +2,6 @@
 
 # Function to retrieve system information
 get_system_information() {
-    # Command to retrieve system information
     echo "System Information:"
     echo "Hostname: $(hostname)"
     echo "Kernel: $(uname -r)"
