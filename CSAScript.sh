@@ -3,6 +3,7 @@
 # Function to retrieve system information
 get_system_information() {
     echo "System Information:"
+    echo "-------------------"
     echo "Hostname: $(hostname)"
     echo "Kernel: $(uname -r)"
     echo "CPU: $(lscpu | grep "Model name" | cut -d':' -f2 | sed 's/^[ \t]*//')"
